@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
- package com.example.android.navigation
+package com.example.android.navigation
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.android.navigation.databinding.FragmentTitleBinding
 
 
@@ -35,7 +38,16 @@ class TitleFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
-                R.layout.fragment_title,container,false)
+                R.layout.fragment_title, container, false)
+
+        val playButton: Button = binding.root.findViewById(R.id.playButton)
+
+        playButton.setOnClickListener(View.OnClickListener {
+
+            findNavController().navigate(R.id.first)
+
+        })
+
         return binding.root
     }
 
